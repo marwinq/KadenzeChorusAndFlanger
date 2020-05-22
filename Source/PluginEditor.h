@@ -19,6 +19,8 @@
 class KadenzeChorusAndFlangerAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
+    void extracted(juce::AudioParameterFloat *dryWetParameter);
+    
     KadenzeChorusAndFlangerAudioProcessorEditor (KadenzeChorusAndFlangerAudioProcessor&);
     ~KadenzeChorusAndFlangerAudioProcessorEditor();
 
@@ -31,7 +33,12 @@ private:
     KadenzeChorusAndFlangerAudioProcessor& processor;
     
     Slider mDryWetSlider;
+    Slider mDepthSlider;
+    Slider mRateSlider;
+    Slider mPhaseOffsetSlider;
     Slider mFeedbackSlider;
+    
+    ComboBox mType;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KadenzeChorusAndFlangerAudioProcessorEditor)

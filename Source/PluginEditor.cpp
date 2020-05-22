@@ -21,7 +21,6 @@ KadenzeChorusAndFlangerAudioProcessorEditor::KadenzeChorusAndFlangerAudioProcess
     
     auto& params = processor.getParameters();
     AudioParameterFloat* dryWetParameter = (AudioParameterFloat*)params.getUnchecked(0);
-    AudioParameterFloat* feedbackParameter = (AudioParameterFloat*)params.getUnchecked(1);
     
     //Dry Wet
     mDryWetSlider.setBounds(0,0,100,100);
@@ -36,8 +35,57 @@ KadenzeChorusAndFlangerAudioProcessorEditor::KadenzeChorusAndFlangerAudioProcess
     mDryWetSlider.onDragStart = [dryWetParameter] { dryWetParameter->beginChangeGesture(); };
     mDryWetSlider.onDragEnd = [dryWetParameter] {dryWetParameter->endChangeGesture();};
     
+    //Depth
+    AudioParameterFloat* depthParameter= (AudioParameterFloat*)params.getUnchecked(1);
+    
+    mDepthSlider.setBounds(100,0,100,100);
+    mDepthSlider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
+    mDepthSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxBelow, true, 100, 30);
+    
+    mDepthSlider.setRange(depthParameter->range.start, depthParameter->range.end);
+    mDepthSlider.setValue(*depthParameter);
+    addAndMakeVisible(mDepthSlider);
+    
+    mDepthSlider.onValueChange = [this, depthParameter]{ *depthParameter = mDepthSlider.getValue();};
+    mDepthSlider.onDragStart = [depthParameter] { depthParameter->beginChangeGesture(); };
+    mDepthSlider.onDragEnd = [depthParameter] {depthParameter->endChangeGesture();};
+    
+    
+    //Rate
+    AudioParameterFloat* rateParameter= (AudioParameterFloat*)params.getUnchecked(2);
+    
+    mRateSlider.setBounds(200,0,100,100);
+    mRateSlider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
+    mRateSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxBelow, true, 100, 30);
+    
+    mRateSlider.setRange(rateParameter->range.start, rateParameter->range.end);
+    mRateSlider.setValue(*rateParameter);
+    addAndMakeVisible(mRateSlider);
+    
+    mRateSlider.onValueChange = [this, rateParameter]{ *rateParameter = mRateSlider.getValue();};
+    mRateSlider.onDragStart = [rateParameter] { rateParameter->beginChangeGesture(); };
+    mRateSlider.onDragEnd = [rateParameter] {rateParameter->endChangeGesture();};
+    
+    //Phase Offset
+    
+    AudioParameterFloat* phaseParameter= (AudioParameterFloat*)params.getUnchecked(3);
+    
+    mPhaseOffsetSlider.setBounds(300,0,100,100);
+    mPhaseOffsetSlider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
+    mPhaseOffsetSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxBelow, true, 100, 30);
+    
+    mPhaseOffsetSlider.setRange(phaseParameter->range.start, phaseParameter->range.end);
+    mPhaseOffsetSlider.setValue(*phaseParameter);
+    addAndMakeVisible(mPhaseOffsetSlider);
+    
+    mPhaseOffsetSlider.onValueChange = [this, phaseParameter]{ *phaseParameter = mPhaseOffsetSlider.getValue();};
+    mPhaseOffsetSlider.onDragStart = [phaseParameter] { phaseParameter->beginChangeGesture(); };
+    mPhaseOffsetSlider.onDragEnd = [phaseParameter] {phaseParameter->endChangeGesture();};
+    
+    
     //Feedback
-    mFeedbackSlider.setBounds(100,0,100,100);
+    AudioParameterFloat* feedbackParameter = (AudioParameterFloat*)params.getUnchecked(4);
+    mFeedbackSlider.setBounds(0,100,100,100);
     mFeedbackSlider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
     mFeedbackSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxBelow, true, 100, 30);
     
@@ -48,6 +96,21 @@ KadenzeChorusAndFlangerAudioProcessorEditor::KadenzeChorusAndFlangerAudioProcess
     mFeedbackSlider.onValueChange = [this, feedbackParameter]{ *feedbackParameter = mFeedbackSlider.getValue();};
     mFeedbackSlider.onDragStart = [feedbackParameter] { feedbackParameter->beginChangeGesture(); };
     mFeedbackSlider.onDragEnd = [feedbackParameter] {feedbackParameter->endChangeGesture();};
+    
+    //Type
+    AudioParameterInt* typeParameter = (AudioParameterInt*)params.getUnchecked(5);
+    mType.setBounds(100, 100, 100, 30);
+    mType.addItem("Chorus",1);
+    mType.addItem("Flanger",2);
+    addAndMakeVisible(mType);
+    
+    mType.onChange = [this, typeParameter]{
+        typeParameter->beginChangeGesture();
+        *typeParameter = mType.getSelectedItemIndex();
+        typeParameter->endChangeGesture();
+    };
+    
+    mType.setSelectedItemIndex(*typeParameter);
     
 }
 
