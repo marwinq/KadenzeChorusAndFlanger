@@ -12,7 +12,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-KadenzeDelayAudioProcessorEditor::KadenzeDelayAudioProcessorEditor (KadenzeDelayAudioProcessor& p)
+KadenzeChorusAndFlangerAudioProcessorEditor::KadenzeChorusAndFlangerAudioProcessorEditor (KadenzeChorusAndFlangerAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
     // Make sure that before the constructor has finished, you've set the
@@ -22,7 +22,6 @@ KadenzeDelayAudioProcessorEditor::KadenzeDelayAudioProcessorEditor (KadenzeDelay
     auto& params = processor.getParameters();
     AudioParameterFloat* dryWetParameter = (AudioParameterFloat*)params.getUnchecked(0);
     AudioParameterFloat* feedbackParameter = (AudioParameterFloat*)params.getUnchecked(1);
-    AudioParameterFloat* delayTimeParameter = (AudioParameterFloat*)params.getUnchecked(2);
     
     //Dry Wet
     mDryWetSlider.setBounds(0,0,100,100);
@@ -50,36 +49,24 @@ KadenzeDelayAudioProcessorEditor::KadenzeDelayAudioProcessorEditor (KadenzeDelay
     mFeedbackSlider.onDragStart = [feedbackParameter] { feedbackParameter->beginChangeGesture(); };
     mFeedbackSlider.onDragEnd = [feedbackParameter] {feedbackParameter->endChangeGesture();};
     
-    //Delay Time
-    mDelayTimeSlider.setBounds(200,0,100,100);
-    mDelayTimeSlider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
-mDelayTimeSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxBelow, true, 100, 30);
-    
-    mDelayTimeSlider.setRange(delayTimeParameter->range.start, delayTimeParameter->range.end);
-    mDelayTimeSlider.setValue(*delayTimeParameter);
-    addAndMakeVisible(mDelayTimeSlider);
-    
-    mDelayTimeSlider.onValueChange = [this, delayTimeParameter]{ *delayTimeParameter = mDelayTimeSlider.getValue();};
-    mDelayTimeSlider.onDragStart = [delayTimeParameter] { delayTimeParameter->beginChangeGesture(); };
-    mDelayTimeSlider.onDragEnd = [delayTimeParameter] {delayTimeParameter->endChangeGesture();};
 }
 
-KadenzeDelayAudioProcessorEditor::~KadenzeDelayAudioProcessorEditor()
+KadenzeChorusAndFlangerAudioProcessorEditor::~KadenzeChorusAndFlangerAudioProcessorEditor()
 {
 }
 
 //==============================================================================
-void KadenzeDelayAudioProcessorEditor::paint (Graphics& g)
+void KadenzeChorusAndFlangerAudioProcessorEditor::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
 
     g.setColour (Colours::lightviolet); // Colours::violet
     g.setFont (15.0f);
-    g.drawFittedText ("Delay Prototype", getLocalBounds(), Justification::centred, 1);
+    g.drawFittedText ("Chorus and Flanger - TEST 2", getLocalBounds(), Justification::centred, 1);
 }
 
-void KadenzeDelayAudioProcessorEditor::resized()
+void KadenzeChorusAndFlangerAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..

@@ -8,11 +8,11 @@
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourcompany.KadenzeDelay</string>
+    <string>com.yourcompany.KadenzeChorusAndFlanger</string>
     <key>CFBundleName</key>
-    <string>KadenzeDelay</string>
+    <string>KadenzeChorusAndFlanger</string>
     <key>CFBundleDisplayName</key>
-    <string>KadenzeDelay</string>
+    <string>KadenzeChorusAndFlanger</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleSignature</key>

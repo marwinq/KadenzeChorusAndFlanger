@@ -16,11 +16,11 @@
 //==============================================================================
 /**
 */
-class KadenzeDelayAudioProcessorEditor  : public AudioProcessorEditor
+class KadenzeChorusAndFlangerAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
-    KadenzeDelayAudioProcessorEditor (KadenzeDelayAudioProcessor&);
-    ~KadenzeDelayAudioProcessorEditor();
+    KadenzeChorusAndFlangerAudioProcessorEditor (KadenzeChorusAndFlangerAudioProcessor&);
+    ~KadenzeChorusAndFlangerAudioProcessorEditor();
 
     //==============================================================================
     void paint (Graphics&) override;
@@ -28,12 +28,11 @@ public:
 
 private:
     
+    KadenzeChorusAndFlangerAudioProcessor& processor;
+    
     Slider mDryWetSlider;
     Slider mFeedbackSlider;
-    Slider mDelayTimeSlider;
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
-    KadenzeDelayAudioProcessor& processor;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KadenzeDelayAudioProcessorEditor)
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KadenzeChorusAndFlangerAudioProcessorEditor)
 };

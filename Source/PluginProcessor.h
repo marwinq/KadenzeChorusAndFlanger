@@ -17,12 +17,12 @@
 //==============================================================================
 /**
 */
-class KadenzeDelayAudioProcessor  : public AudioProcessor
+class KadenzeChorusAndFlangerAudioProcessor  : public AudioProcessor
 {
 public:
     //==============================================================================
-    KadenzeDelayAudioProcessor();
-    ~KadenzeDelayAudioProcessor();
+    KadenzeChorusAndFlangerAudioProcessor();
+    ~KadenzeChorusAndFlangerAudioProcessor();
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -60,21 +60,35 @@ public:
 
 private:
     
+    float mLFOPhase;
+    
     float mDelayTimeSmoothed;
     
+    
     AudioParameterFloat* mDryWetParameter;
+    //How wide it sweeps
+    AudioParameterFloat* mDepthParameter;
+    //How quickly it sweeps
+    AudioParameterFloat* mRateParameter;
+    //Difference in Readhead between Left and Right channels
+    AudioParameterFloat* mPhaseOffsetParameter;
     AudioParameterFloat* mFeedbackParameter;
-    AudioParameterFloat* mTimeParameter;
+    
+    AudioParameterInt* mTypeParameter;
+    
     //float mDryWet;
     float mFeedbackLeft;
     float mFeedbackRight;
+    
     float mDelayTimeInSamples;
     float mDelayReadHead;
     
-    int mCircularBufferLength;
     int mCircularBufferWriteHead;
+    int mCircularBufferLength;
+    
+    
     float* mCircularBufferLeft;
     float* mCircularBufferRight;
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KadenzeDelayAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KadenzeChorusAndFlangerAudioProcessor)
 };

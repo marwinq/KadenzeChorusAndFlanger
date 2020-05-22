@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="zyTqYa" name="KadenzeDelay" projectType="audioplug" jucerVersion="5.4.7">
-  <MAINGROUP id="gr54oc" name="KadenzeDelay">
+<JUCERPROJECT id="zyTqYa" name="KadenzeChorusAndFlanger" projectType="audioplug"
+              jucerVersion="5.4.7" pluginManufacturer="MQ INC">
+  <MAINGROUP id="gr54oc" name="KadenzeChorusAndFlanger">
     <GROUP id="{CBAAD432-F75C-2C5C-E85C-0D36C686C510}" name="Source">
       <FILE id="T9GCZR" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
