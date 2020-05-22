@@ -126,7 +126,7 @@ void KadenzeChorusAndFlangerAudioProcessorEditor::paint (Graphics& g)
 
     g.setColour (Colours::lightviolet); // Colours::violet
     g.setFont (15.0f);
-    g.drawFittedText ("Chorus and Flanger - TEST 2", getLocalBounds(), Justification::centred, 1);
+    g.drawFittedText ("Chorus and Flanger - TEST 5", getLocalBounds(), Justification::centred, 1);
 }
 
 void KadenzeChorusAndFlangerAudioProcessorEditor::resized()
