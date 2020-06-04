@@ -12,6 +12,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include <array>
 
 //==============================================================================
 /**
@@ -27,6 +28,7 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
+    void initializeSlider(std::array<Slider *,5> s, std::array<AudioParameterFloat *,5> p);
 
 private:
     
